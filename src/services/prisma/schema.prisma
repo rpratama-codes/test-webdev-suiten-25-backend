@@ -76,7 +76,7 @@ model WorkPositions {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  employee           Employees         @relation(fields: [employee_id], references: [id])
+  employee           Employees         @relation(fields: [employee_id], references: [id], onDelete: Cascade)
   work_position_name WorkPositionNames @relation(fields: [work_position_name_id], references: [id])
 
   @@index([employee_id])
@@ -139,7 +139,7 @@ model Attendance {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  employee Employees @relation(fields: [employee_id], references: [id])
+  employee Employees @relation(fields: [employee_id], references: [id], onDelete: Cascade)
 
   @@map("attendance")
 }
