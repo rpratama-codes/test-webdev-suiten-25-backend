@@ -8,10 +8,14 @@ import ms from 'ms';
 import { ServiceBase } from '../../utils/base-class/service.class.js';
 import type { Users } from '../prisma/generated/client.js';
 import { UserRoles } from '../prisma/generated/enums.js';
+import type { PrismaService } from '../prisma/prisma.service.js';
 import type { SignInDto, SignUpDto } from './auth-v1.dto.js';
 
 export class AuthV1Service extends ServiceBase {
-	constructor(private readonly oAuth2Client: OAuth2Client) {
+	constructor(
+		private readonly prisma: PrismaService,
+		private readonly oAuth2Client: OAuth2Client,
+	) {
 		super();
 	}
 

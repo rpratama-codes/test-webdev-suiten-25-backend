@@ -1,9 +1,14 @@
 import { ServiceBase } from '../../utils/base-class/service.class.js';
 import type { RequireAtLeastOne } from '../../utils/types/tsypes.js';
+import type { PrismaService } from '../prisma/prisma.service.js';
 
 type userIdentifier = { id: string; email: string };
 
 export class UserService extends ServiceBase {
+	constructor(private readonly prisma: PrismaService) {
+		super();
+	}
+
 	public async getUser(identifier: RequireAtLeastOne<userIdentifier>) {
 		return await this.prisma.users.findFirst({
 			where: {

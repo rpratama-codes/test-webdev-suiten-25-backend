@@ -1,5 +1,6 @@
 import * as OTPAuth from 'otpauth';
 import { ServiceBase } from '../../utils/base-class/service.class.js';
+import type { PrismaService } from '../prisma/prisma.service.js';
 
 export type ConfigOTP = {
 	algorithm: string;
@@ -15,6 +16,10 @@ export type GeneratedOTP = {
 };
 
 export class OtpService extends ServiceBase {
+	constructor(private readonly prisma: PrismaService) {
+		super();
+	}
+
 	/**
 	 * This function to generate and regenerate Register or Login OTP.
 	 * This method not mean for 2FA, please make another method!.

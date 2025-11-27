@@ -1,12 +1,14 @@
 import express, { type Request, type Response } from 'express';
 import { UsersController } from '../../controller/user/user.controller.js';
 import { authMiddleware } from '../../middleware/auth.middleware.js';
+import { PrismaService } from '../../services/prisma/prisma.service.js';
 import { UserService } from '../../services/user/user.service.js';
 import { HappyRouter } from '../../utils/base-class/happy-router.js';
 import { happyLogger } from '../../utils/logger/winston.js';
 
 const router = express.Router();
-const userService = new UserService();
+const prismaService = new PrismaService();
+const userService = new UserService(prismaService);
 const userController = new UsersController(userService);
 
 const happyRouter = new HappyRouter({

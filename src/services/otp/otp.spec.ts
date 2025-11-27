@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { type ConfigOTP, OtpService } from './otp.service.js';
 import '@dotenvx/dotenvx/config';
 import z from 'zod';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 const otpSchema = z.object({
 	token: z.string(),
@@ -17,7 +18,8 @@ const otpSchema = z.object({
 type OTP = z.infer<typeof otpSchema>;
 
 describe('OTP Functionality', () => {
-	const otpService = new OtpService();
+	const prismaService = new PrismaService();
+	const otpService = new OtpService(prismaService);
 
 	it('It should be defined', () => {
 		expect(otpService).toBeDefined();

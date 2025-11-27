@@ -6,18 +6,20 @@ import { refreshMiddleware } from '../../middleware/auth.middleware.js';
 import { AuthV1Service } from '../../services/auth/auth-v1.service.js';
 import { MailService } from '../../services/mail/mail.service.js';
 import { OtpService } from '../../services/otp/otp.service.js';
+import { PrismaService } from '../../services/prisma/prisma.service.js';
 import { UserService } from '../../services/user/user.service.js';
 import { HappyRouter } from '../../utils/base-class/happy-router.js';
 import { happyLogger } from '../../utils/logger/winston.js';
 
-const otpService = new OtpService();
+const prismaService = new PrismaService();
 const mailService = new MailService();
-const userService = new UserService();
+const otpService = new OtpService(prismaService);
+const userService = new UserService(prismaService);
 const oAuth2Client = new OAuth2Client({
 	client_id: process.env.GOOGLE_CLIENT_ID as string,
 	client_secret: process.env.GOOGLE_CLIENT_SECRET as string,
 });
-const authV1Service = new AuthV1Service(oAuth2Client);
+const authV1Service = new AuthV1Service(prismaService, oAuth2Client);
 const authV1Controller = new AuthV1Controller(
 	authV1Service,
 	mailService,
