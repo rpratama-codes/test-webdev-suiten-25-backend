@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.0.0",
   "engineVersion": "0c19ccc313cf9911a90d99d2ac2eb0280c76c513",
   "activeProvider": "postgresql",
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n}\n\ngenerator client {\n  // Prisma New Generator\n  provider               = \"prisma-client\"\n  output                 = \"generated\"\n  engineType             = \"client\"\n  moduleFormat           = \"esm\"\n  importFileExtension    = \"js\"\n  generatedFileExtension = \"ts\"\n}\n\nenum UserRoles {\n  system_user\n  user\n}\n\nmodel Users {\n  id                String    @id @default(uuid(7))\n  first_name        String?\n  last_name         String?\n  email             String    @unique @db.Citext\n  username          String    @unique @db.Citext\n  verified          Boolean   @default(false)\n  password          String?\n  image             String?\n  role              UserRoles\n  google_account_id String?\n\n  created_at          DateTime              @default(now())\n  updated_at          DateTime              @updatedAt\n  oneTimeTokenSecrets OneTimeTokenSecrets[]\n\n  @@index(google_account_id)\n  @@map(\"user\")\n}\n\nmodel OneTimeTokenSecrets {\n  id         String   @id @default(uuid(7))\n  user_id    String\n  secret     String\n  config     Json     @db.JsonB\n  time_used  Int      @default(0)\n  expired_at DateTime\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  user Users? @relation(fields: [user_id], references: [id])\n\n  @@index([user_id])\n  @@map(\"one_time_token_secrets\")\n}\n",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n}\n\ngenerator client {\n  // Prisma New Generator\n  provider               = \"prisma-client\"\n  output                 = \"generated\"\n  engineType             = \"client\"\n  moduleFormat           = \"esm\"\n  importFileExtension    = \"js\"\n  generatedFileExtension = \"ts\"\n}\n\nenum UserRoles {\n  system_user\n  user\n}\n\nmodel Users {\n  id                String    @id @default(uuid(7))\n  first_name        String?\n  last_name         String?\n  email             String    @unique @db.Citext\n  username          String    @unique @db.Citext\n  verified          Boolean   @default(false)\n  password          String?\n  image             String?\n  role              UserRoles\n  google_account_id String?\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  oneTimeTokenSecrets OneTimeTokenSecrets[]\n\n  @@index(google_account_id)\n  @@map(\"users\")\n}\n\nmodel OneTimeTokenSecrets {\n  id         String   @id @default(uuid(7))\n  user_id    String\n  secret     String\n  config     Json     @db.JsonB\n  time_used  Int      @default(0)\n  expired_at DateTime\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  user Users? @relation(fields: [user_id], references: [id])\n\n  @@index([user_id])\n  @@map(\"one_time_token_secrets\")\n}\n\nmodel WorkPositionNames {\n  id   String @id @default(uuid(7))\n  name String\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  workPositions WorkPositions[]\n\n  @@map(\"work_position_name\")\n}\n\n// An employee can have more than one position. \nmodel WorkPositions {\n  id                    String @id @default(uuid(7))\n  employee_id           String\n  work_position_name_id String\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  employee           Employees         @relation(fields: [employee_id], references: [id])\n  work_position_name WorkPositionNames @relation(fields: [work_position_name_id], references: [id])\n\n  @@index([employee_id])\n  @@index([work_position_name_id])\n  @@map(\"work_positions\")\n}\n\nmodel BankNames {\n  id   String @id @default(uuid(7))\n  name String\n\n  employees Employees[]\n\n  @@map(\"bank_names\")\n}\n\nenum SalaryPaymentPeriode {\n  daily\n  weekly\n  bi_weekly\n  semi_monthly\n  monthly\n}\n\nmodel Employees {\n  id                     String                @id @default(uuid(7))\n  name                   String\n  phone_number           String?\n  bank_account_number    String?\n  bank_account_name      String?\n  bank_name_id           String?\n  salary                 Float                 @default(0) @db.DoublePrecision\n  salary_daily           Float                 @default(0) @db.DoublePrecision\n  salary_payment_periode SalaryPaymentPeriode?\n  allowance_meal         Float                 @default(0) @db.DoublePrecision\n  allowance_holiday      Float                 @default(0) @db.DoublePrecision\n  overtime_rate          Float                 @default(0) @db.DoublePrecision\n  overtime_holiday_rate  Float                 @default(0) @db.DoublePrecision\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  bank_name BankNames? @relation(fields: [bank_name_id], references: [id], onDelete: SetNull)\n\n  workPositions WorkPositions[]\n  attendances   Attendance[]\n\n  @@index([bank_name_id])\n  @@map(\"employees\")\n}\n\nmodel Attendance {\n  id             String   @id @default(uuid(7))\n  employee_id    String\n  date           DateTime @db.Date\n  clock_out_time DateTime @db.Time()\n  workingTime    String   @default(\"0+0\")\n  notes          String?\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  employee Employees @relation(fields: [employee_id], references: [id])\n\n  @@map(\"attendance\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRoles\"},{\"name\":\"google_account_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"oneTimeTokenSecrets\",\"kind\":\"object\",\"type\":\"OneTimeTokenSecrets\",\"relationName\":\"OneTimeTokenSecretsToUsers\"}],\"dbName\":\"user\"},\"OneTimeTokenSecrets\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"secret\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"config\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"time_used\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"expired_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"OneTimeTokenSecretsToUsers\"}],\"dbName\":\"one_time_token_secrets\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRoles\"},{\"name\":\"google_account_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"oneTimeTokenSecrets\",\"kind\":\"object\",\"type\":\"OneTimeTokenSecrets\",\"relationName\":\"OneTimeTokenSecretsToUsers\"}],\"dbName\":\"users\"},\"OneTimeTokenSecrets\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"secret\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"config\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"time_used\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"expired_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"OneTimeTokenSecretsToUsers\"}],\"dbName\":\"one_time_token_secrets\"},\"WorkPositionNames\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"workPositions\",\"kind\":\"object\",\"type\":\"WorkPositions\",\"relationName\":\"WorkPositionNamesToWorkPositions\"}],\"dbName\":\"work_position_name\"},\"WorkPositions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"employee_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"work_position_name_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"employee\",\"kind\":\"object\",\"type\":\"Employees\",\"relationName\":\"EmployeesToWorkPositions\"},{\"name\":\"work_position_name\",\"kind\":\"object\",\"type\":\"WorkPositionNames\",\"relationName\":\"WorkPositionNamesToWorkPositions\"}],\"dbName\":\"work_positions\"},\"BankNames\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"employees\",\"kind\":\"object\",\"type\":\"Employees\",\"relationName\":\"BankNamesToEmployees\"}],\"dbName\":\"bank_names\"},\"Employees\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bank_account_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bank_account_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bank_name_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"salary\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"salary_daily\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"salary_payment_periode\",\"kind\":\"enum\",\"type\":\"SalaryPaymentPeriode\"},{\"name\":\"allowance_meal\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"allowance_holiday\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"overtime_rate\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"overtime_holiday_rate\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"bank_name\",\"kind\":\"object\",\"type\":\"BankNames\",\"relationName\":\"BankNamesToEmployees\"},{\"name\":\"workPositions\",\"kind\":\"object\",\"type\":\"WorkPositions\",\"relationName\":\"EmployeesToWorkPositions\"},{\"name\":\"attendances\",\"kind\":\"object\",\"type\":\"Attendance\",\"relationName\":\"AttendanceToEmployees\"}],\"dbName\":\"employees\"},\"Attendance\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"employee_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"clock_out_time\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"workingTime\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"employee\",\"kind\":\"object\",\"type\":\"Employees\",\"relationName\":\"AttendanceToEmployees\"}],\"dbName\":\"attendance\"}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -193,6 +193,56 @@ export interface PrismaClient<
     * ```
     */
   get oneTimeTokenSecrets(): Prisma.OneTimeTokenSecretsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.workPositionNames`: Exposes CRUD operations for the **WorkPositionNames** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WorkPositionNames
+    * const workPositionNames = await prisma.workPositionNames.findMany()
+    * ```
+    */
+  get workPositionNames(): Prisma.WorkPositionNamesDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.workPositions`: Exposes CRUD operations for the **WorkPositions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WorkPositions
+    * const workPositions = await prisma.workPositions.findMany()
+    * ```
+    */
+  get workPositions(): Prisma.WorkPositionsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.bankNames`: Exposes CRUD operations for the **BankNames** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BankNames
+    * const bankNames = await prisma.bankNames.findMany()
+    * ```
+    */
+  get bankNames(): Prisma.BankNamesDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.employees`: Exposes CRUD operations for the **Employees** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Employees
+    * const employees = await prisma.employees.findMany()
+    * ```
+    */
+  get employees(): Prisma.EmployeesDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.attendance`: Exposes CRUD operations for the **Attendance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Attendances
+    * const attendances = await prisma.attendance.findMany()
+    * ```
+    */
+  get attendance(): Prisma.AttendanceDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

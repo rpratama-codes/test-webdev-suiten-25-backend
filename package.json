@@ -1,14 +1,14 @@
 {
-	"name": "paywiz-hris-backend",
+	"name": "test-webdev-suiten-25",
 	"version": "1.0.0",
 	"description": "Paywiz HRIS Backend",
-	"homepage": "https://github.com/rpratama-codes/paywiz-hris-backend#readme",
+	"homepage": "https://github.com/rpratama-codes/test-webdev-suiten-25#readme",
 	"bugs": {
-		"url": "https://github.com/rpratama-codes/paywiz-hris-backend/issues"
+		"url": "https://github.com/rpratama-codes/test-webdev-suiten-25/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/rpratama-codes/paywiz-hris-backend.git"
+		"url": "git+https://github.com/rpratama-codes/test-webdev-suiten-25.git"
 	},
 	"license": "BSD-3-Clause",
 	"author": "Rizqi Pratama",

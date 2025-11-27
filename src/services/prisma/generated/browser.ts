@@ -27,3 +27,28 @@ export type Users = Prisma.UsersModel
  * 
  */
 export type OneTimeTokenSecrets = Prisma.OneTimeTokenSecretsModel
+/**
+ * Model WorkPositionNames
+ * 
+ */
+export type WorkPositionNames = Prisma.WorkPositionNamesModel
+/**
+ * Model WorkPositions
+ * 
+ */
+export type WorkPositions = Prisma.WorkPositionsModel
+/**
+ * Model BankNames
+ * 
+ */
+export type BankNames = Prisma.BankNamesModel
+/**
+ * Model Employees
+ * 
+ */
+export type Employees = Prisma.EmployeesModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel

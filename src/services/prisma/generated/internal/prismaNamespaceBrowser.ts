@@ -52,7 +52,12 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Users: 'Users',
-  OneTimeTokenSecrets: 'OneTimeTokenSecrets'
+  OneTimeTokenSecrets: 'OneTimeTokenSecrets',
+  WorkPositionNames: 'WorkPositionNames',
+  WorkPositions: 'WorkPositions',
+  BankNames: 'BankNames',
+  Employees: 'Employees',
+  Attendance: 'Attendance'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -101,6 +106,70 @@ export const OneTimeTokenSecretsScalarFieldEnum = {
 } as const
 
 export type OneTimeTokenSecretsScalarFieldEnum = (typeof OneTimeTokenSecretsScalarFieldEnum)[keyof typeof OneTimeTokenSecretsScalarFieldEnum]
+
+
+export const WorkPositionNamesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type WorkPositionNamesScalarFieldEnum = (typeof WorkPositionNamesScalarFieldEnum)[keyof typeof WorkPositionNamesScalarFieldEnum]
+
+
+export const WorkPositionsScalarFieldEnum = {
+  id: 'id',
+  employee_id: 'employee_id',
+  work_position_name_id: 'work_position_name_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type WorkPositionsScalarFieldEnum = (typeof WorkPositionsScalarFieldEnum)[keyof typeof WorkPositionsScalarFieldEnum]
+
+
+export const BankNamesScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type BankNamesScalarFieldEnum = (typeof BankNamesScalarFieldEnum)[keyof typeof BankNamesScalarFieldEnum]
+
+
+export const EmployeesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone_number: 'phone_number',
+  bank_account_number: 'bank_account_number',
+  bank_account_name: 'bank_account_name',
+  bank_name_id: 'bank_name_id',
+  salary: 'salary',
+  salary_daily: 'salary_daily',
+  salary_payment_periode: 'salary_payment_periode',
+  allowance_meal: 'allowance_meal',
+  allowance_holiday: 'allowance_holiday',
+  overtime_rate: 'overtime_rate',
+  overtime_holiday_rate: 'overtime_holiday_rate',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type EmployeesScalarFieldEnum = (typeof EmployeesScalarFieldEnum)[keyof typeof EmployeesScalarFieldEnum]
+
+
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  employee_id: 'employee_id',
+  date: 'date',
+  clock_out_time: 'clock_out_time',
+  workingTime: 'workingTime',
+  notes: 'notes',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
 
 
 export const SortOrder = {

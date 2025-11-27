@@ -15,3 +15,14 @@ export const UserRoles = {
 } as const
 
 export type UserRoles = (typeof UserRoles)[keyof typeof UserRoles]
+
+
+export const SalaryPaymentPeriode = {
+  daily: 'daily',
+  weekly: 'weekly',
+  bi_weekly: 'bi_weekly',
+  semi_monthly: 'semi_monthly',
+  monthly: 'monthly'
+} as const
+
+export type SalaryPaymentPeriode = (typeof SalaryPaymentPeriode)[keyof typeof SalaryPaymentPeriode]

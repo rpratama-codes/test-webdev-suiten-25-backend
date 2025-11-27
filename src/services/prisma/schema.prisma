@@ -29,12 +29,13 @@ model Users {
   role              UserRoles
   google_account_id String?
 
-  created_at          DateTime              @default(now())
-  updated_at          DateTime              @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
   oneTimeTokenSecrets OneTimeTokenSecrets[]
 
   @@index(google_account_id)
-  @@map("user")
+  @@map("users")
 }
 
 model OneTimeTokenSecrets {
@@ -52,4 +53,93 @@ model OneTimeTokenSecrets {
 
   @@index([user_id])
   @@map("one_time_token_secrets")
+}
+
+model WorkPositionNames {
+  id   String @id @default(uuid(7))
+  name String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  workPositions WorkPositions[]
+
+  @@map("work_position_name")
+}
+
+// An employee can have more than one position. 
+model WorkPositions {
+  id                    String @id @default(uuid(7))
+  employee_id           String
+  work_position_name_id String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  employee           Employees         @relation(fields: [employee_id], references: [id])
+  work_position_name WorkPositionNames @relation(fields: [work_position_name_id], references: [id])
+
+  @@index([employee_id])
+  @@index([work_position_name_id])
+  @@map("work_positions")
+}
+
+model BankNames {
+  id   String @id @default(uuid(7))
+  name String
+
+  employees Employees[]
+
+  @@map("bank_names")
+}
+
+enum SalaryPaymentPeriode {
+  daily
+  weekly
+  bi_weekly
+  semi_monthly
+  monthly
+}
+
+model Employees {
+  id                     String                @id @default(uuid(7))
+  name                   String
+  phone_number           String?
+  bank_account_number    String?
+  bank_account_name      String?
+  bank_name_id           String?
+  salary                 Float                 @default(0) @db.DoublePrecision
+  salary_daily           Float                 @default(0) @db.DoublePrecision
+  salary_payment_periode SalaryPaymentPeriode?
+  allowance_meal         Float                 @default(0) @db.DoublePrecision
+  allowance_holiday      Float                 @default(0) @db.DoublePrecision
+  overtime_rate          Float                 @default(0) @db.DoublePrecision
+  overtime_holiday_rate  Float                 @default(0) @db.DoublePrecision
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  bank_name BankNames? @relation(fields: [bank_name_id], references: [id], onDelete: SetNull)
+
+  workPositions WorkPositions[]
+  attendances   Attendance[]
+
+  @@index([bank_name_id])
+  @@map("employees")
+}
+
+model Attendance {
+  id             String   @id @default(uuid(7))
+  employee_id    String
+  date           DateTime @db.Date
+  clock_out_time DateTime @db.Time()
+  workingTime    String   @default("0+0")
+  notes          String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  employee Employees @relation(fields: [employee_id], references: [id])
+
+  @@map("attendance")
 }
