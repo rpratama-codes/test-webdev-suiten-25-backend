@@ -20,15 +20,19 @@ export class ControllerBase extends BaseClass {
 		};
 	}
 
-	protected sendApiResponse(
+	protected sendApiResponse<T = ResponseData>(
 		response: Response,
 		payload: {
 			status: HttpSuccessfulStatusCode;
 			message?: string;
-			data?: ResponseData;
+			data?: T;
 		},
 	) {
 		const defaultMessage = this.generateMessage(payload.status);
+
+		if (payload.status === 204) {
+			return response.sendStatus(payload.status)
+		}
 
 		return response
 			.status(payload.status)
