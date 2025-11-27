@@ -20,6 +20,7 @@ export class HappyRouterRoute {
 	public method?: HttpMethod | undefined;
 	public handlers: RequestHandler[];
 	public middlewares?: RequestHandler[] | undefined;
+	public disable?: boolean = false;
 
 	constructor(params: HappyRouterRoute) {
 		this.path = params.path;
@@ -96,6 +97,10 @@ export class HappyRouter {
 
 		if (this.routes) {
 			for (const route of this.routes) {
+				if (route.disable) {
+					continue;
+				}
+
 				const defaultMethod = 'get';
 				const method = route.method ?? defaultMethod;
 
