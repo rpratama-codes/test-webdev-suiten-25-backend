@@ -121,8 +121,9 @@ model Employees {
 
   bank_name BankNames? @relation(fields: [bank_name_id], references: [id], onDelete: SetNull)
 
-  workPositions WorkPositions[]
-  attendances   Attendance[]
+  workPositions   WorkPositions[]
+  attendances     Attendance[]
+  attendanceTimes AttendanceTimes[]
 
   @@index([bank_name_id])
   @@map("employees")
@@ -139,7 +140,25 @@ model Attendance {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  employee Employees @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+  employee        Employees         @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+  attendanceTimes AttendanceTimes[]
 
+  @@index([employee_id])
   @@map("attendance")
+}
+
+model AttendanceTimes {
+  id            String @id @default(uuid(7))
+  employee_id   String
+  attendance_id String
+
+  employee   Employees  @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+  attendance Attendance @relation(fields: [attendance_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@index([employee_id])
+  @@index([attendance_id])
+  @@map("attendance_times")
 }

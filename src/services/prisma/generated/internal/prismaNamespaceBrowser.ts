@@ -57,7 +57,8 @@ export const ModelName = {
   WorkPositions: 'WorkPositions',
   BankNames: 'BankNames',
   Employees: 'Employees',
-  Attendance: 'Attendance'
+  Attendance: 'Attendance',
+  AttendanceTimes: 'AttendanceTimes'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -170,6 +171,17 @@ export const AttendanceScalarFieldEnum = {
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const AttendanceTimesScalarFieldEnum = {
+  id: 'id',
+  employee_id: 'employee_id',
+  attendance_id: 'attendance_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type AttendanceTimesScalarFieldEnum = (typeof AttendanceTimesScalarFieldEnum)[keyof typeof AttendanceTimesScalarFieldEnum]
 
 
 export const SortOrder = {

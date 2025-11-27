@@ -52,3 +52,8 @@ export type Employees = Prisma.EmployeesModel
  * 
  */
 export type Attendance = Prisma.AttendanceModel
+/**
+ * Model AttendanceTimes
+ * 
+ */
+export type AttendanceTimes = Prisma.AttendanceTimesModel

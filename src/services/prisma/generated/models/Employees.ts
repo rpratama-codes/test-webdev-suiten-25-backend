@@ -319,6 +319,7 @@ export type EmployeesWhereInput = {
   bank_name?: Prisma.XOR<Prisma.BankNamesNullableScalarRelationFilter, Prisma.BankNamesWhereInput> | null
   workPositions?: Prisma.WorkPositionsListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
+  attendanceTimes?: Prisma.AttendanceTimesListRelationFilter
 }
 
 export type EmployeesOrderByWithRelationInput = {
@@ -340,6 +341,7 @@ export type EmployeesOrderByWithRelationInput = {
   bank_name?: Prisma.BankNamesOrderByWithRelationInput
   workPositions?: Prisma.WorkPositionsOrderByRelationAggregateInput
   attendances?: Prisma.AttendanceOrderByRelationAggregateInput
+  attendanceTimes?: Prisma.AttendanceTimesOrderByRelationAggregateInput
 }
 
 export type EmployeesWhereUniqueInput = Prisma.AtLeast<{
@@ -364,6 +366,7 @@ export type EmployeesWhereUniqueInput = Prisma.AtLeast<{
   bank_name?: Prisma.XOR<Prisma.BankNamesNullableScalarRelationFilter, Prisma.BankNamesWhereInput> | null
   workPositions?: Prisma.WorkPositionsListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
+  attendanceTimes?: Prisma.AttendanceTimesListRelationFilter
 }, "id">
 
 export type EmployeesOrderByWithAggregationInput = {
@@ -428,6 +431,7 @@ export type EmployeesCreateInput = {
   bank_name?: Prisma.BankNamesCreateNestedOneWithoutEmployeesInput
   workPositions?: Prisma.WorkPositionsCreateNestedManyWithoutEmployeeInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesUncheckedCreateInput = {
@@ -448,6 +452,7 @@ export type EmployeesUncheckedCreateInput = {
   updated_at?: Date | string
   workPositions?: Prisma.WorkPositionsUncheckedCreateNestedManyWithoutEmployeeInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesUpdateInput = {
@@ -468,6 +473,7 @@ export type EmployeesUpdateInput = {
   bank_name?: Prisma.BankNamesUpdateOneWithoutEmployeesNestedInput
   workPositions?: Prisma.WorkPositionsUpdateManyWithoutEmployeeNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesUncheckedUpdateInput = {
@@ -488,6 +494,7 @@ export type EmployeesUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workPositions?: Prisma.WorkPositionsUncheckedUpdateManyWithoutEmployeeNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesCreateManyInput = {
@@ -712,6 +719,20 @@ export type EmployeesUpdateOneRequiredWithoutAttendancesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeesUpdateToOneWithWhereWithoutAttendancesInput, Prisma.EmployeesUpdateWithoutAttendancesInput>, Prisma.EmployeesUncheckedUpdateWithoutAttendancesInput>
 }
 
+export type EmployeesCreateNestedOneWithoutAttendanceTimesInput = {
+  create?: Prisma.XOR<Prisma.EmployeesCreateWithoutAttendanceTimesInput, Prisma.EmployeesUncheckedCreateWithoutAttendanceTimesInput>
+  connectOrCreate?: Prisma.EmployeesCreateOrConnectWithoutAttendanceTimesInput
+  connect?: Prisma.EmployeesWhereUniqueInput
+}
+
+export type EmployeesUpdateOneRequiredWithoutAttendanceTimesNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeesCreateWithoutAttendanceTimesInput, Prisma.EmployeesUncheckedCreateWithoutAttendanceTimesInput>
+  connectOrCreate?: Prisma.EmployeesCreateOrConnectWithoutAttendanceTimesInput
+  upsert?: Prisma.EmployeesUpsertWithoutAttendanceTimesInput
+  connect?: Prisma.EmployeesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeesUpdateToOneWithWhereWithoutAttendanceTimesInput, Prisma.EmployeesUpdateWithoutAttendanceTimesInput>, Prisma.EmployeesUncheckedUpdateWithoutAttendanceTimesInput>
+}
+
 export type EmployeesCreateWithoutWorkPositionsInput = {
   id?: string
   name: string
@@ -729,6 +750,7 @@ export type EmployeesCreateWithoutWorkPositionsInput = {
   updated_at?: Date | string
   bank_name?: Prisma.BankNamesCreateNestedOneWithoutEmployeesInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesUncheckedCreateWithoutWorkPositionsInput = {
@@ -748,6 +770,7 @@ export type EmployeesUncheckedCreateWithoutWorkPositionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesCreateOrConnectWithoutWorkPositionsInput = {
@@ -783,6 +806,7 @@ export type EmployeesUpdateWithoutWorkPositionsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bank_name?: Prisma.BankNamesUpdateOneWithoutEmployeesNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesUncheckedUpdateWithoutWorkPositionsInput = {
@@ -802,6 +826,7 @@ export type EmployeesUncheckedUpdateWithoutWorkPositionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesCreateWithoutBank_nameInput = {
@@ -821,6 +846,7 @@ export type EmployeesCreateWithoutBank_nameInput = {
   updated_at?: Date | string
   workPositions?: Prisma.WorkPositionsCreateNestedManyWithoutEmployeeInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesUncheckedCreateWithoutBank_nameInput = {
@@ -840,6 +866,7 @@ export type EmployeesUncheckedCreateWithoutBank_nameInput = {
   updated_at?: Date | string
   workPositions?: Prisma.WorkPositionsUncheckedCreateNestedManyWithoutEmployeeInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesCreateOrConnectWithoutBank_nameInput = {
@@ -906,6 +933,7 @@ export type EmployeesCreateWithoutAttendancesInput = {
   updated_at?: Date | string
   bank_name?: Prisma.BankNamesCreateNestedOneWithoutEmployeesInput
   workPositions?: Prisma.WorkPositionsCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesUncheckedCreateWithoutAttendancesInput = {
@@ -925,6 +953,7 @@ export type EmployeesUncheckedCreateWithoutAttendancesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   workPositions?: Prisma.WorkPositionsUncheckedCreateNestedManyWithoutEmployeeInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedCreateNestedManyWithoutEmployeeInput
 }
 
 export type EmployeesCreateOrConnectWithoutAttendancesInput = {
@@ -960,6 +989,7 @@ export type EmployeesUpdateWithoutAttendancesInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bank_name?: Prisma.BankNamesUpdateOneWithoutEmployeesNestedInput
   workPositions?: Prisma.WorkPositionsUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesUncheckedUpdateWithoutAttendancesInput = {
@@ -979,6 +1009,103 @@ export type EmployeesUncheckedUpdateWithoutAttendancesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workPositions?: Prisma.WorkPositionsUncheckedUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedUpdateManyWithoutEmployeeNestedInput
+}
+
+export type EmployeesCreateWithoutAttendanceTimesInput = {
+  id?: string
+  name: string
+  phone_number?: string | null
+  bank_account_number?: string | null
+  bank_account_name?: string | null
+  salary?: number
+  salary_daily?: number
+  salary_payment_periode?: $Enums.SalaryPaymentPeriode | null
+  allowance_meal?: number
+  allowance_holiday?: number
+  overtime_rate?: number
+  overtime_holiday_rate?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  bank_name?: Prisma.BankNamesCreateNestedOneWithoutEmployeesInput
+  workPositions?: Prisma.WorkPositionsCreateNestedManyWithoutEmployeeInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutEmployeeInput
+}
+
+export type EmployeesUncheckedCreateWithoutAttendanceTimesInput = {
+  id?: string
+  name: string
+  phone_number?: string | null
+  bank_account_number?: string | null
+  bank_account_name?: string | null
+  bank_name_id?: string | null
+  salary?: number
+  salary_daily?: number
+  salary_payment_periode?: $Enums.SalaryPaymentPeriode | null
+  allowance_meal?: number
+  allowance_holiday?: number
+  overtime_rate?: number
+  overtime_holiday_rate?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  workPositions?: Prisma.WorkPositionsUncheckedCreateNestedManyWithoutEmployeeInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
+}
+
+export type EmployeesCreateOrConnectWithoutAttendanceTimesInput = {
+  where: Prisma.EmployeesWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeesCreateWithoutAttendanceTimesInput, Prisma.EmployeesUncheckedCreateWithoutAttendanceTimesInput>
+}
+
+export type EmployeesUpsertWithoutAttendanceTimesInput = {
+  update: Prisma.XOR<Prisma.EmployeesUpdateWithoutAttendanceTimesInput, Prisma.EmployeesUncheckedUpdateWithoutAttendanceTimesInput>
+  create: Prisma.XOR<Prisma.EmployeesCreateWithoutAttendanceTimesInput, Prisma.EmployeesUncheckedCreateWithoutAttendanceTimesInput>
+  where?: Prisma.EmployeesWhereInput
+}
+
+export type EmployeesUpdateToOneWithWhereWithoutAttendanceTimesInput = {
+  where?: Prisma.EmployeesWhereInput
+  data: Prisma.XOR<Prisma.EmployeesUpdateWithoutAttendanceTimesInput, Prisma.EmployeesUncheckedUpdateWithoutAttendanceTimesInput>
+}
+
+export type EmployeesUpdateWithoutAttendanceTimesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  salary_daily?: Prisma.FloatFieldUpdateOperationsInput | number
+  salary_payment_periode?: Prisma.NullableEnumSalaryPaymentPeriodeFieldUpdateOperationsInput | $Enums.SalaryPaymentPeriode | null
+  allowance_meal?: Prisma.FloatFieldUpdateOperationsInput | number
+  allowance_holiday?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_rate?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_holiday_rate?: Prisma.FloatFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bank_name?: Prisma.BankNamesUpdateOneWithoutEmployeesNestedInput
+  workPositions?: Prisma.WorkPositionsUpdateManyWithoutEmployeeNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutEmployeeNestedInput
+}
+
+export type EmployeesUncheckedUpdateWithoutAttendanceTimesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_name_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  salary_daily?: Prisma.FloatFieldUpdateOperationsInput | number
+  salary_payment_periode?: Prisma.NullableEnumSalaryPaymentPeriodeFieldUpdateOperationsInput | $Enums.SalaryPaymentPeriode | null
+  allowance_meal?: Prisma.FloatFieldUpdateOperationsInput | number
+  allowance_holiday?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_rate?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_holiday_rate?: Prisma.FloatFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workPositions?: Prisma.WorkPositionsUncheckedUpdateManyWithoutEmployeeNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesCreateManyBank_nameInput = {
@@ -1015,6 +1142,7 @@ export type EmployeesUpdateWithoutBank_nameInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workPositions?: Prisma.WorkPositionsUpdateManyWithoutEmployeeNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesUncheckedUpdateWithoutBank_nameInput = {
@@ -1034,6 +1162,7 @@ export type EmployeesUncheckedUpdateWithoutBank_nameInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workPositions?: Prisma.WorkPositionsUncheckedUpdateManyWithoutEmployeeNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  attendanceTimes?: Prisma.AttendanceTimesUncheckedUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeesUncheckedUpdateManyWithoutBank_nameInput = {
@@ -1061,11 +1190,13 @@ export type EmployeesUncheckedUpdateManyWithoutBank_nameInput = {
 export type EmployeesCountOutputType = {
   workPositions: number
   attendances: number
+  attendanceTimes: number
 }
 
 export type EmployeesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workPositions?: boolean | EmployeesCountOutputTypeCountWorkPositionsArgs
   attendances?: boolean | EmployeesCountOutputTypeCountAttendancesArgs
+  attendanceTimes?: boolean | EmployeesCountOutputTypeCountAttendanceTimesArgs
 }
 
 /**
@@ -1092,6 +1223,13 @@ export type EmployeesCountOutputTypeCountAttendancesArgs<ExtArgs extends runtime
   where?: Prisma.AttendanceWhereInput
 }
 
+/**
+ * EmployeesCountOutputType without action
+ */
+export type EmployeesCountOutputTypeCountAttendanceTimesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceTimesWhereInput
+}
+
 
 export type EmployeesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1112,6 +1250,7 @@ export type EmployeesSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   bank_name?: boolean | Prisma.Employees$bank_nameArgs<ExtArgs>
   workPositions?: boolean | Prisma.Employees$workPositionsArgs<ExtArgs>
   attendances?: boolean | Prisma.Employees$attendancesArgs<ExtArgs>
+  attendanceTimes?: boolean | Prisma.Employees$attendanceTimesArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employees"]>
 
@@ -1176,6 +1315,7 @@ export type EmployeesInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   bank_name?: boolean | Prisma.Employees$bank_nameArgs<ExtArgs>
   workPositions?: boolean | Prisma.Employees$workPositionsArgs<ExtArgs>
   attendances?: boolean | Prisma.Employees$attendancesArgs<ExtArgs>
+  attendanceTimes?: boolean | Prisma.Employees$attendanceTimesArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EmployeesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1191,6 +1331,7 @@ export type $EmployeesPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     bank_name: Prisma.$BankNamesPayload<ExtArgs> | null
     workPositions: Prisma.$WorkPositionsPayload<ExtArgs>[]
     attendances: Prisma.$AttendancePayload<ExtArgs>[]
+    attendanceTimes: Prisma.$AttendanceTimesPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1605,6 +1746,7 @@ export interface Prisma__EmployeesClient<T, Null = never, ExtArgs extends runtim
   bank_name<T extends Prisma.Employees$bank_nameArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employees$bank_nameArgs<ExtArgs>>): Prisma.Prisma__BankNamesClient<runtime.Types.Result.GetResult<Prisma.$BankNamesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workPositions<T extends Prisma.Employees$workPositionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employees$workPositionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkPositionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendances<T extends Prisma.Employees$attendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employees$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attendanceTimes<T extends Prisma.Employees$attendanceTimesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employees$attendanceTimesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceTimesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2109,6 +2251,30 @@ export type Employees$attendancesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.AttendanceScalarFieldEnum | Prisma.AttendanceScalarFieldEnum[]
+}
+
+/**
+ * Employees.attendanceTimes
+ */
+export type Employees$attendanceTimesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceTimes
+   */
+  select?: Prisma.AttendanceTimesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceTimes
+   */
+  omit?: Prisma.AttendanceTimesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceTimesInclude<ExtArgs> | null
+  where?: Prisma.AttendanceTimesWhereInput
+  orderBy?: Prisma.AttendanceTimesOrderByWithRelationInput | Prisma.AttendanceTimesOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceTimesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceTimesScalarFieldEnum | Prisma.AttendanceTimesScalarFieldEnum[]
 }
 
 /**

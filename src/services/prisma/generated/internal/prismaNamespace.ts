@@ -390,7 +390,8 @@ export const ModelName = {
   WorkPositions: 'WorkPositions',
   BankNames: 'BankNames',
   Employees: 'Employees',
-  Attendance: 'Attendance'
+  Attendance: 'Attendance',
+  AttendanceTimes: 'AttendanceTimes'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "oneTimeTokenSecrets" | "workPositionNames" | "workPositions" | "bankNames" | "employees" | "attendance"
+    modelProps: "users" | "oneTimeTokenSecrets" | "workPositionNames" | "workPositions" | "bankNames" | "employees" | "attendance" | "attendanceTimes"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -928,6 +929,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AttendanceTimes: {
+      payload: Prisma.$AttendanceTimesPayload<ExtArgs>
+      fields: Prisma.AttendanceTimesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceTimesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceTimesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceTimesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceTimesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceTimesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceTimesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceTimesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AttendanceTimesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>[]
+        }
+        delete: {
+          args: Prisma.AttendanceTimesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>
+        }
+        update: {
+          args: Prisma.AttendanceTimesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceTimesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceTimesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AttendanceTimesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>[]
+        }
+        upsert: {
+          args: Prisma.AttendanceTimesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceTimesPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceTimesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceTimes>
+        }
+        groupBy: {
+          args: Prisma.AttendanceTimesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceTimesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceTimesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceTimesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1061,6 +1136,17 @@ export const AttendanceScalarFieldEnum = {
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const AttendanceTimesScalarFieldEnum = {
+  id: 'id',
+  employee_id: 'employee_id',
+  attendance_id: 'attendance_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type AttendanceTimesScalarFieldEnum = (typeof AttendanceTimesScalarFieldEnum)[keyof typeof AttendanceTimesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1299,6 +1385,7 @@ export type GlobalOmitConfig = {
   bankNames?: Prisma.BankNamesOmit
   employees?: Prisma.EmployeesOmit
   attendance?: Prisma.AttendanceOmit
+  attendanceTimes?: Prisma.AttendanceTimesOmit
 }
 
 /* Types for Logging */
