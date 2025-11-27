@@ -1,17 +1,20 @@
 import z from 'zod';
 
-export const createAttendanceDto = z.object({
+export const baseAttendanceDto = z.object({
 	date: z.string(),
-	employee_id: z.string(),
-	time: z.string(),
-	note: z.string(),
+	clock_out_time: z.string().optional(),
+	notes: z.string().optional(),
 });
 
-export const updateAttendanceDto = z.object({
+export const createAttendanceDto = baseAttendanceDto.extend({
+	employee_id: z.string(),
+	clock_out_time: z.string(),
+});
+
+export const createManyAttendanceDto = z.array(createAttendanceDto);
+
+export const updateAttendanceDto = baseAttendanceDto.extend({
 	id: z.string(),
-	notes: z.string().optional(),
-	clock_out_time: z.string().optional(),
-	date: z.string().optional(),
 });
 
 export type CreateAttendanceDto = z.infer<typeof createAttendanceDto>;

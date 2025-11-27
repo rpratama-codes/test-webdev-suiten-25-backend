@@ -3,6 +3,7 @@ import type {
 	Attendance,
 	AttendanceTimes,
 } from '../prisma/generated/client.js';
+import type { AttendanceUncheckedUpdateInput } from '../prisma/generated/models.js';
 import type { PrismaService } from '../prisma/prisma.service.js';
 import type {
 	CreateAttendanceDto,
@@ -16,32 +17,28 @@ export class AttendanceService extends ServiceBase {
 
 	public async list() {
 		// TODO : add filter
-		return await this.prisma.attendanceTimes.findMany({
-			include: {
-				employee: {
+
+		const employees = await this.prisma.employees.findMany({
+			select: {
+				name: true,
+				attendances: true,
+				workPositions: {
 					select: {
-						name: true,
-						workPositions: {
-							select: {
-								work_position_name: {
-									select: {
-										name: true,
-									},
-								},
-							},
-						},
+						work_position_name: true,
 					},
 				},
-				attendance: true,
 			},
 		});
+
+		return employees;
 	}
 
 	public async createMany(dto: CreateAttendanceDto[]) {
+		console.log(dto);
 		const attendanceData = dto.map((data) => {
 			return {
-				clock_out_time: new Date(data.time),
-				date: data.date as unknown as Date,
+				clock_out_time: new Date(data.clock_out_time),
+				date: new Date(data.date),
 				employee_id: data.employee_id,
 			} satisfies Pick<Attendance, 'clock_out_time' | 'date' | 'employee_id'>;
 		});
@@ -66,15 +63,14 @@ export class AttendanceService extends ServiceBase {
 		});
 	}
 
-	// NOT TESTED
 	public async updateById(dto: UpdateAttendanceDto) {
-		const updateData = dto as unknown as Partial<Attendance>;
-
 		return await this.prisma.attendance.update({
 			where: {
 				id: dto.id,
 			},
-			data: updateData,
+			data: {
+				...(dto as AttendanceUncheckedUpdateInput),
+			},
 		});
 	}
 
