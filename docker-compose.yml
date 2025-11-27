@@ -1,4 +1,4 @@
-name: rekomendasiin
+name: paywiz
 
 services:
 
@@ -17,18 +17,6 @@ services:
     restart: always
     ports:
       - "8080:8080"
-
-  mongo:
-    image: mongodb/mongodb-community-server:7.0-ubi8
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
   smtp:
     image: rnwood/smtp4dev
     restart: always
@@ -45,7 +33,6 @@ services:
       - "4000:4000"
     depends_on:
       - postgres
-      - mongo
       - smtp
     # This is for development only!
     # I need network host because issue of smtp4dev can't hit from another container.
@@ -61,9 +48,7 @@ services:
       - SMTP_PORT=2525
       - SMTP_USER=user
       - SMTP_PASS=pass
-      - MONGO_URI=mongodb://user:pass@localhost:27017/rekomendasiin?authSource=admin
       - DATABASE_URL=postgresql://postgres:mysecretpassword@localhost/postgres
 
 volumes:
   postgres-data:
-  mongo-data:

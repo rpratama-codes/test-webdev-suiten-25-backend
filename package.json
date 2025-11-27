@@ -1,14 +1,14 @@
 {
-	"name": "rekomendasiin-super-app-be",
+	"name": "paywiz-hris-backend",
 	"version": "1.0.0",
-	"description": "Rewrite of my thesis app but with many improvement as my lecturer said.",
-	"homepage": "https://github.com/rpratama-codes/rekomendasiin-super-app-be#readme",
+	"description": "Paywiz HRIS Backend",
+	"homepage": "https://github.com/rpratama-codes/paywiz-hris-backend#readme",
 	"bugs": {
-		"url": "https://github.com/rpratama-codes/rekomendasiin-super-app-be/issues"
+		"url": "https://github.com/rpratama-codes/paywiz-hris-backend/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/rpratama-codes/rekomendasiin-super-app-be.git"
+		"url": "git+https://github.com/rpratama-codes/paywiz-hris-backend.git"
 	},
 	"license": "BSD-3-Clause",
 	"author": "Rizqi Pratama",
