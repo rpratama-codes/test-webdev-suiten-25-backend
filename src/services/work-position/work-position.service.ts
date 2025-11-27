@@ -5,7 +5,7 @@ import type {
 	UpdatePositionNameDto,
 } from './work-position.dto.js';
 
-export class WorkPositions extends ServiceBase {
+export class WorkPositionsService extends ServiceBase {
 	constructor(private readonly prisma: PrismaService) {
 		super();
 	}
