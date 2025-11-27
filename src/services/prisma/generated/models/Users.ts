@@ -238,7 +238,6 @@ export type UsersWhereInput = {
   google_account_id?: Prisma.StringNullableFilter<"Users"> | string | null
   created_at?: Prisma.DateTimeFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Users"> | Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsListRelationFilter
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsListRelationFilter
 }
 
@@ -255,7 +254,6 @@ export type UsersOrderByWithRelationInput = {
   google_account_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  savedRecommendations?: Prisma.SavedRecommendationsOrderByRelationAggregateInput
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsOrderByRelationAggregateInput
 }
 
@@ -275,7 +273,6 @@ export type UsersWhereUniqueInput = Prisma.AtLeast<{
   google_account_id?: Prisma.StringNullableFilter<"Users"> | string | null
   created_at?: Prisma.DateTimeFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Users"> | Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsListRelationFilter
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsListRelationFilter
 }, "id" | "email" | "username">
 
@@ -328,7 +325,6 @@ export type UsersCreateInput = {
   google_account_id?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsCreateNestedManyWithoutUserInput
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsCreateNestedManyWithoutUserInput
 }
 
@@ -345,7 +341,6 @@ export type UsersUncheckedCreateInput = {
   google_account_id?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsUncheckedCreateNestedManyWithoutUserInput
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -362,7 +357,6 @@ export type UsersUpdateInput = {
   google_account_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsUpdateManyWithoutUserNestedInput
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsUpdateManyWithoutUserNestedInput
 }
 
@@ -379,7 +373,6 @@ export type UsersUncheckedUpdateInput = {
   google_account_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsUncheckedUpdateManyWithoutUserNestedInput
   oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -498,22 +491,6 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type UsersCreateNestedOneWithoutSavedRecommendationsInput = {
-  create?: Prisma.XOR<Prisma.UsersCreateWithoutSavedRecommendationsInput, Prisma.UsersUncheckedCreateWithoutSavedRecommendationsInput>
-  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutSavedRecommendationsInput
-  connect?: Prisma.UsersWhereUniqueInput
-}
-
-export type UsersUpdateOneWithoutSavedRecommendationsNestedInput = {
-  create?: Prisma.XOR<Prisma.UsersCreateWithoutSavedRecommendationsInput, Prisma.UsersUncheckedCreateWithoutSavedRecommendationsInput>
-  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutSavedRecommendationsInput
-  upsert?: Prisma.UsersUpsertWithoutSavedRecommendationsInput
-  disconnect?: Prisma.UsersWhereInput | boolean
-  delete?: Prisma.UsersWhereInput | boolean
-  connect?: Prisma.UsersWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UsersUpdateToOneWithWhereWithoutSavedRecommendationsInput, Prisma.UsersUpdateWithoutSavedRecommendationsInput>, Prisma.UsersUncheckedUpdateWithoutSavedRecommendationsInput>
-}
-
 export type UsersCreateNestedOneWithoutOneTimeTokenSecretsInput = {
   create?: Prisma.XOR<Prisma.UsersCreateWithoutOneTimeTokenSecretsInput, Prisma.UsersUncheckedCreateWithoutOneTimeTokenSecretsInput>
   connectOrCreate?: Prisma.UsersCreateOrConnectWithoutOneTimeTokenSecretsInput
@@ -530,86 +507,6 @@ export type UsersUpdateOneWithoutOneTimeTokenSecretsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UsersUpdateToOneWithWhereWithoutOneTimeTokenSecretsInput, Prisma.UsersUpdateWithoutOneTimeTokenSecretsInput>, Prisma.UsersUncheckedUpdateWithoutOneTimeTokenSecretsInput>
 }
 
-export type UsersCreateWithoutSavedRecommendationsInput = {
-  id?: string
-  first_name?: string | null
-  last_name?: string | null
-  email: string
-  username: string
-  verified?: boolean
-  password?: string | null
-  image?: string | null
-  role: $Enums.UserRoles
-  google_account_id?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsCreateNestedManyWithoutUserInput
-}
-
-export type UsersUncheckedCreateWithoutSavedRecommendationsInput = {
-  id?: string
-  first_name?: string | null
-  last_name?: string | null
-  email: string
-  username: string
-  verified?: boolean
-  password?: string | null
-  image?: string | null
-  role: $Enums.UserRoles
-  google_account_id?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UsersCreateOrConnectWithoutSavedRecommendationsInput = {
-  where: Prisma.UsersWhereUniqueInput
-  create: Prisma.XOR<Prisma.UsersCreateWithoutSavedRecommendationsInput, Prisma.UsersUncheckedCreateWithoutSavedRecommendationsInput>
-}
-
-export type UsersUpsertWithoutSavedRecommendationsInput = {
-  update: Prisma.XOR<Prisma.UsersUpdateWithoutSavedRecommendationsInput, Prisma.UsersUncheckedUpdateWithoutSavedRecommendationsInput>
-  create: Prisma.XOR<Prisma.UsersCreateWithoutSavedRecommendationsInput, Prisma.UsersUncheckedCreateWithoutSavedRecommendationsInput>
-  where?: Prisma.UsersWhereInput
-}
-
-export type UsersUpdateToOneWithWhereWithoutSavedRecommendationsInput = {
-  where?: Prisma.UsersWhereInput
-  data: Prisma.XOR<Prisma.UsersUpdateWithoutSavedRecommendationsInput, Prisma.UsersUncheckedUpdateWithoutSavedRecommendationsInput>
-}
-
-export type UsersUpdateWithoutSavedRecommendationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
-  google_account_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsUpdateManyWithoutUserNestedInput
-}
-
-export type UsersUncheckedUpdateWithoutSavedRecommendationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
-  google_account_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oneTimeTokenSecrets?: Prisma.OneTimeTokenSecretsUncheckedUpdateManyWithoutUserNestedInput
-}
-
 export type UsersCreateWithoutOneTimeTokenSecretsInput = {
   id?: string
   first_name?: string | null
@@ -623,7 +520,6 @@ export type UsersCreateWithoutOneTimeTokenSecretsInput = {
   google_account_id?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsCreateNestedManyWithoutUserInput
 }
 
 export type UsersUncheckedCreateWithoutOneTimeTokenSecretsInput = {
@@ -639,7 +535,6 @@ export type UsersUncheckedCreateWithoutOneTimeTokenSecretsInput = {
   google_account_id?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UsersCreateOrConnectWithoutOneTimeTokenSecretsInput = {
@@ -671,7 +566,6 @@ export type UsersUpdateWithoutOneTimeTokenSecretsInput = {
   google_account_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsUpdateManyWithoutUserNestedInput
 }
 
 export type UsersUncheckedUpdateWithoutOneTimeTokenSecretsInput = {
@@ -687,7 +581,6 @@ export type UsersUncheckedUpdateWithoutOneTimeTokenSecretsInput = {
   google_account_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  savedRecommendations?: Prisma.SavedRecommendationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -696,12 +589,10 @@ export type UsersUncheckedUpdateWithoutOneTimeTokenSecretsInput = {
  */
 
 export type UsersCountOutputType = {
-  savedRecommendations: number
   oneTimeTokenSecrets: number
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  savedRecommendations?: boolean | UsersCountOutputTypeCountSavedRecommendationsArgs
   oneTimeTokenSecrets?: boolean | UsersCountOutputTypeCountOneTimeTokenSecretsArgs
 }
 
@@ -713,13 +604,6 @@ export type UsersCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the UsersCountOutputType
    */
   select?: Prisma.UsersCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UsersCountOutputType without action
- */
-export type UsersCountOutputTypeCountSavedRecommendationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SavedRecommendationsWhereInput
 }
 
 /**
@@ -743,7 +627,6 @@ export type UsersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   google_account_id?: boolean
   created_at?: boolean
   updated_at?: boolean
-  savedRecommendations?: boolean | Prisma.Users$savedRecommendationsArgs<ExtArgs>
   oneTimeTokenSecrets?: boolean | Prisma.Users$oneTimeTokenSecretsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
@@ -795,7 +678,6 @@ export type UsersSelectScalar = {
 
 export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "last_name" | "email" | "username" | "verified" | "password" | "image" | "role" | "google_account_id" | "created_at" | "updated_at", ExtArgs["result"]["users"]>
 export type UsersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  savedRecommendations?: boolean | Prisma.Users$savedRecommendationsArgs<ExtArgs>
   oneTimeTokenSecrets?: boolean | Prisma.Users$oneTimeTokenSecretsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -805,7 +687,6 @@ export type UsersIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $UsersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Users"
   objects: {
-    savedRecommendations: Prisma.$SavedRecommendationsPayload<ExtArgs>[]
     oneTimeTokenSecrets: Prisma.$OneTimeTokenSecretsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1215,7 +1096,6 @@ readonly fields: UsersFieldRefs;
  */
 export interface Prisma__UsersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  savedRecommendations<T extends Prisma.Users$savedRecommendationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Users$savedRecommendationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedRecommendationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   oneTimeTokenSecrets<T extends Prisma.Users$oneTimeTokenSecretsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Users$oneTimeTokenSecretsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OneTimeTokenSecretsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1643,30 +1523,6 @@ export type UsersDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Users to delete.
    */
   limit?: number
-}
-
-/**
- * Users.savedRecommendations
- */
-export type Users$savedRecommendationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SavedRecommendations
-   */
-  select?: Prisma.SavedRecommendationsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SavedRecommendations
-   */
-  omit?: Prisma.SavedRecommendationsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SavedRecommendationsInclude<ExtArgs> | null
-  where?: Prisma.SavedRecommendationsWhereInput
-  orderBy?: Prisma.SavedRecommendationsOrderByWithRelationInput | Prisma.SavedRecommendationsOrderByWithRelationInput[]
-  cursor?: Prisma.SavedRecommendationsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SavedRecommendationsScalarFieldEnum | Prisma.SavedRecommendationsScalarFieldEnum[]
 }
 
 /**

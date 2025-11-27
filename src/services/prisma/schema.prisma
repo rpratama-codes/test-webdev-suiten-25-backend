@@ -23,106 +23,18 @@ model Users {
   last_name         String?
   email             String    @unique @db.Citext
   username          String    @unique @db.Citext
-  // just for note, 
-  // password can be null because passwordless feature
   verified          Boolean   @default(false)
   password          String?
   image             String?
   role              UserRoles
   google_account_id String?
 
-  created_at           DateTime               @default(now())
-  updated_at           DateTime               @updatedAt
-  savedRecommendations SavedRecommendations[]
-  oneTimeTokenSecrets  OneTimeTokenSecrets[]
+  created_at          DateTime              @default(now())
+  updated_at          DateTime              @updatedAt
+  oneTimeTokenSecrets OneTimeTokenSecrets[]
 
   @@index(google_account_id)
   @@map("user")
-}
-
-model Categories {
-  id            String      @id @default(uuid(7))
-  category_name String?
-  item          Items[]
-  Criteria      Criterias[]
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@map("categories")
-}
-
-model Items {
-  id          String  @id @default(uuid(7))
-  category_id String?
-  item_name   String?
-  soc         Float?
-  ram         Float?
-  rom         Float?
-  camera      Float?
-  screen      Float?
-  nfc         Float?
-  network     Float?
-  battery     Float?
-  price       Float?
-  weight      Float?
-  picture     String?
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  category Categories? @relation(fields: [category_id], references: [id], onDelete: SetNull)
-
-  @@map("items")
-}
-
-model Criterias {
-  id            String  @id @default(uuid(7))
-  category_id   String?
-  criteria_name String
-  soc           Float   @default(0)
-  ram           Float   @default(0)
-  rom           Float   @default(0)
-  camera        Float   @default(0)
-  screen        Float   @default(0)
-  nfc           Float   @default(0)
-  network       Float   @default(0)
-  battery       Float   @default(0)
-  price         Float   @default(0)
-  weight        Float   @default(0)
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  category Categories? @relation(fields: [category_id], references: [id], onDelete: SetNull)
-
-  @@map("criterias")
-}
-
-// 
-// Write for future.
-// 
-enum SavedRecommendationVisibility {
-  private
-  public
-  limited
-}
-
-model SavedRecommendations {
-  id         String                        @id @default(uuid(7))
-  user_id    String?
-  visibility SavedRecommendationVisibility @default(public)
-  results    Json                          @db.JsonB
-  // versioning for result
-  version    Int                           @default(1)
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  user Users? @relation(fields: [user_id], references: [id])
-
-  @@index([user_id])
-  @@map("saved_recommendations")
 }
 
 model OneTimeTokenSecrets {
@@ -141,29 +53,3 @@ model OneTimeTokenSecrets {
   @@index([user_id])
   @@map("one_time_token_secrets")
 }
-
-// Save for Next Sprint
-
-// model BenchmarkSource {
-//   id          String  @id @default(uuid(7))
-//   name        String
-//   description String?
-
-//   ItemSpecs ItemSpecs[]
-
-//   @@map("benchmark_source")
-// }
-
-// model ItemSpecs {
-//   id           String  @id @default(uuid(7))
-//   benchmark_id String
-//   item_id      String
-//   name         String
-//   value        Float
-//   description  String?
-
-//   item      Item            @relation(fields: [item_id], references: [id])
-//   benchmark BenchmarkSource @relation(fields: [benchmark_id], references: [id])
-
-//   @@map("item_specs")
-// }

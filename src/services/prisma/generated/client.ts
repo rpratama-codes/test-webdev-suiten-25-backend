@@ -45,26 +45,6 @@ export { Prisma }
  */
 export type Users = Prisma.UsersModel
 /**
- * Model Categories
- * 
- */
-export type Categories = Prisma.CategoriesModel
-/**
- * Model Items
- * 
- */
-export type Items = Prisma.ItemsModel
-/**
- * Model Criterias
- * 
- */
-export type Criterias = Prisma.CriteriasModel
-/**
- * Model SavedRecommendations
- * 
- */
-export type SavedRecommendations = Prisma.SavedRecommendationsModel
-/**
  * Model OneTimeTokenSecrets
  * 
  */

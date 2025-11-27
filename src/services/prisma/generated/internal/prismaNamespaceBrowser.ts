@@ -52,10 +52,6 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Users: 'Users',
-  Categories: 'Categories',
-  Items: 'Items',
-  Criterias: 'Criterias',
-  SavedRecommendations: 'SavedRecommendations',
   OneTimeTokenSecrets: 'OneTimeTokenSecrets'
 } as const
 
@@ -91,72 +87,6 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
-
-
-export const CategoriesScalarFieldEnum = {
-  id: 'id',
-  category_name: 'category_name',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type CategoriesScalarFieldEnum = (typeof CategoriesScalarFieldEnum)[keyof typeof CategoriesScalarFieldEnum]
-
-
-export const ItemsScalarFieldEnum = {
-  id: 'id',
-  category_id: 'category_id',
-  item_name: 'item_name',
-  soc: 'soc',
-  ram: 'ram',
-  rom: 'rom',
-  camera: 'camera',
-  screen: 'screen',
-  nfc: 'nfc',
-  network: 'network',
-  battery: 'battery',
-  price: 'price',
-  weight: 'weight',
-  picture: 'picture',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type ItemsScalarFieldEnum = (typeof ItemsScalarFieldEnum)[keyof typeof ItemsScalarFieldEnum]
-
-
-export const CriteriasScalarFieldEnum = {
-  id: 'id',
-  category_id: 'category_id',
-  criteria_name: 'criteria_name',
-  soc: 'soc',
-  ram: 'ram',
-  rom: 'rom',
-  camera: 'camera',
-  screen: 'screen',
-  nfc: 'nfc',
-  network: 'network',
-  battery: 'battery',
-  price: 'price',
-  weight: 'weight',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type CriteriasScalarFieldEnum = (typeof CriteriasScalarFieldEnum)[keyof typeof CriteriasScalarFieldEnum]
-
-
-export const SavedRecommendationsScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  visibility: 'visibility',
-  results: 'results',
-  version: 'version',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type SavedRecommendationsScalarFieldEnum = (typeof SavedRecommendationsScalarFieldEnum)[keyof typeof SavedRecommendationsScalarFieldEnum]
 
 
 export const OneTimeTokenSecretsScalarFieldEnum = {

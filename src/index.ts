@@ -9,7 +9,6 @@ import helmet from 'helmet';
 import { errorHandlerMiddleware } from './middleware/error-handler.middleware.js';
 import { loggerMiddleware } from './middleware/logger.middleware.js';
 import { authRouteV1 } from './routes/auth/auth-v1.route.js';
-import { storeFrontRoute } from './routes/store-front/store-front.route.js';
 import { userRoute } from './routes/user/user.route.js';
 import { HappyApp, HappyRouter } from './utils/base-class/happy-router.js';
 import { happyLogger, logger } from './utils/logger/winston.js';
@@ -24,7 +23,7 @@ const router = express.Router({
 const happyRouter = new HappyRouter({
 	prefix: '/api',
 	expressRouter: router,
-	middlewares: [storeFrontRoute, authRouteV1, userRoute],
+	middlewares: [authRouteV1, userRoute],
 	callbackLogger: happyLogger,
 });
 

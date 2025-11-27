@@ -463,6 +463,14 @@ export type OneTimeTokenSecretsUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.OneTimeTokenSecretsScalarWhereInput | Prisma.OneTimeTokenSecretsScalarWhereInput[]
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type OneTimeTokenSecretsCreateWithoutUserInput = {
   id?: string
   secret: string

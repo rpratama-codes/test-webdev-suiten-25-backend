@@ -15,12 +15,3 @@ export const UserRoles = {
 } as const
 
 export type UserRoles = (typeof UserRoles)[keyof typeof UserRoles]
-
-
-export const SavedRecommendationVisibility = {
-  private: 'private',
-  public: 'public',
-  limited: 'limited'
-} as const
-
-export type SavedRecommendationVisibility = (typeof SavedRecommendationVisibility)[keyof typeof SavedRecommendationVisibility]
