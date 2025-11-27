@@ -21,8 +21,8 @@ model Users {
   id                String    @id @default(uuid(7))
   first_name        String?
   last_name         String?
-  email             String    @unique @db.Citext
-  username          String    @unique @db.Citext
+  email             String    
+  username          String    
   verified          Boolean   @default(false)
   password          String?
   image             String?
