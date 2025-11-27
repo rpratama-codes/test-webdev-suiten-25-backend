@@ -8,8 +8,11 @@ import '@dotenvx/dotenvx/config';
 import helmet from 'helmet';
 import { errorHandlerMiddleware } from './middleware/error-handler.middleware.js';
 import { loggerMiddleware } from './middleware/logger.middleware.js';
+import { attendanceRoute } from './routes/attendance/attendance.route.js';
 import { authRouteV1 } from './routes/auth/auth-v1.route.js';
+import { employeeRoute } from './routes/employee/employee.route.js';
 import { userRoute } from './routes/user/user.route.js';
+import { workPositionRoute } from './routes/work-position/work-position.route.js';
 import { HappyApp, HappyRouter } from './utils/base-class/happy-router.js';
 import { happyLogger, logger } from './utils/logger/winston.js';
 
@@ -23,7 +26,13 @@ const router = express.Router({
 const happyRouter = new HappyRouter({
 	prefix: '/api',
 	expressRouter: router,
-	middlewares: [authRouteV1, userRoute],
+	middlewares: [
+		authRouteV1,
+		userRoute,
+		employeeRoute,
+		workPositionRoute,
+		attendanceRoute,
+	],
 	callbackLogger: happyLogger,
 });
 

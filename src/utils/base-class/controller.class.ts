@@ -31,7 +31,7 @@ export class ControllerBase extends BaseClass {
 		const defaultMessage = this.generateMessage(payload.status);
 
 		if (payload.status === 204) {
-			return response.sendStatus(payload.status)
+			return response.sendStatus(payload.status);
 		}
 
 		return response
