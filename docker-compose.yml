@@ -1,0 +1,69 @@
+name: rekomendasiin
+
+services:
+
+  postgres:
+    image: postgres:16.10-alpine3.22
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8080:8080"
+
+  mongo:
+    image: mongodb/mongodb-community-server:7.0-ubi8
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  smtp:
+    image: rnwood/smtp4dev
+    restart: always
+    ports:
+      - "5000:80"
+      - "2525:25"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+      - mongo
+      - smtp
+    # This is for development only!
+    # I need network host because issue of smtp4dev can't hit from another container.
+    network_mode: host
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      - NODE_ENV=development
+      - APP_PORT=4000
+      - SMTP_EMAIL=user@localhost
+      - SMTP_HOST=localhost
+      - SMTP_PORT=2525
+      - SMTP_USER=user
+      - SMTP_PASS=pass
+      - MONGO_URI=mongodb://user:pass@localhost:27017/rekomendasiin?authSource=admin
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@localhost/postgres
+
+volumes:
+  postgres-data:
+  mongo-data:

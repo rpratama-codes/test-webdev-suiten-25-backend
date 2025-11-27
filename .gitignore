@@ -1,0 +1,25 @@
+# Yarn 4 specific ignores
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Standard Node.js ignores
+node_modules/
+.pnp.cjs
+.pnp.loader.cjs
+
+# Logs and other temporary files
+node_modules
+dist
+coverage/
+ca.pem
+*.log
+.DS_Store
+.vitest-cache/
+.react-email
+.env
+.env*
+!.env.example
